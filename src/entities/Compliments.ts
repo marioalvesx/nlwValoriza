@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne } from "typeorm"
+import { Entity, PrimaryColumn, Column, CreateDateColumn, JoinColumn, ManyToOne } from "typeorm"
 
 import { v4 as uuid } from "uuid";
 import { Tag } from "./Tag";
@@ -12,6 +12,10 @@ class Compliment {
 
   @Column()
   user_sender:string;
+
+  @JoinColumn({name: "user_sender"})
+  @ManyToOne(() => User)
+  userSender: User;
 
   @Column()
   user_receiver: Date;
